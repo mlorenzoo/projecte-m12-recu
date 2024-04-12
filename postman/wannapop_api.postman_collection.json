@@ -1,0 +1,5008 @@
+{
+	"info": {
+		"_postman_id": "9a541f66-bad1-476c-abbf-6103235e49c7",
+		"name": "M12 Wannapop Flask API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32202429",
+		"_collection_link": "https://insjoaquimmir-2daw.postman.co/workspace/Team-Workspace~23dd46ab-16d9-4c71-803f-deb4f76025b5/collection/19399681-9a541f66-bad1-476c-abbf-6103235e49c7?action=share&source=collection_link&creator=32202429"
+	},
+	"item": [
+		{
+			"name": "Membre 2",
+			"item": [
+				{
+					"name": "Statuses",
+					"item": [
+						{
+							"name": "List statuses",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const dataSchema = {",
+											"    \"type\": \"array\",",
+											"    \"items\": [{",
+											"        \"type\": \"object\",",
+											"        \"properties\":{",
+											"            \"id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"name\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"slug\": {",
+											"                \"type\":\"string\"",
+											"            }",
+											"        },",
+											"        \"required\": [",
+											"            \"id\",",
+											"            \"name\"",
+											"        ]",
+											"    }]",
+											"};",
+											"",
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"array\");",
+											"    pm.expect(tv4.validate(jsonResponse.data, dataSchema)).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/statuses",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"statuses"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "List statuses",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/statuses",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"statuses"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:51:44 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "107"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Nou\",\n            \"slug\": \"nou\"\n        }\n    ],\n    \"success\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "List users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const dataSchema = {",
+											"    \"type\": \"array\",",
+											"    \"items\": [{",
+											"        \"type\": \"object\",",
+											"        \"properties\":{",
+											"            \"id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"name\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"email\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"role\": {",
+											"                \"type\":\"string\"",
+											"            },                    ",
+											"            \"created\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"updated\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"verified\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"        },",
+											"        \"required\": [",
+											"            \"id\",",
+											"            \"name\",",
+											"            \"email\",",
+											"            \"role\"",
+											"        ]",
+											"    }]",
+											"};",
+											"",
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"array\");",
+											"    pm.expect(tv4.validate(jsonResponse.data, dataSchema)).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/users",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "List users",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/users",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"users"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:51:57 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1009"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"email\": \"joan@example.com\",\n            \"id\": 1,\n            \"name\": \"Joan Pérez\",\n            \"role\": \"admin\",\n            \"updated\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"verified\": 1\n        },\n        {\n            \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"email\": \"anna@example.com\",\n            \"id\": 2,\n            \"name\": \"Anna García\",\n            \"role\": \"moderator\",\n            \"updated\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"verified\": 1\n        },\n        {\n            \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"email\": \"elia@example.com\",\n            \"id\": 3,\n            \"name\": \"Elia Rodríguez\",\n            \"role\": \"wanner\",\n            \"updated\": \"Sun, 24 Mar 2024 18:13:28 GMT\",\n            \"verified\": 1\n        },\n        {\n            \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"email\": \"kevin@example.com\",\n            \"id\": 4,\n            \"name\": \"Kevin Salardú\",\n            \"role\": \"wanner\",\n            \"updated\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"verified\": 1\n        }\n    ],\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "List users with query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const dataSchema = {",
+											"    \"type\": \"array\",",
+											"    \"items\": [{",
+											"        \"type\": \"object\",",
+											"        \"properties\":{",
+											"            \"id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"name\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"email\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"role\": {",
+											"                \"type\":\"string\"",
+											"            },                    ",
+											"            \"created\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"updated\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"verified\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"        },",
+											"        \"required\": [",
+											"            \"id\",",
+											"            \"name\",",
+											"            \"email\",",
+											"            \"role\"",
+											"        ]",
+											"    }]",
+											"};",
+											"",
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"array\");",
+											"    pm.expect(tv4.validate(jsonResponse.data, dataSchema)).to.be.true;",
+											"    // Filter",
+											"    const expectedCount = parseInt(pm.collectionVariables.get(\"userFilterCount\"));",
+											"    pm.expect(jsonResponse.data.length).to.eql(expectedCount);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/users?{{userFilterName}}={{userFilterValue}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"users"
+									],
+									"query": [
+										{
+											"key": "{{userFilterName}}",
+											"value": "{{userFilterValue}}"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "List products with query",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/users?{{userFilterName}}={{userFilterValue}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"users"
+											],
+											"query": [
+												{
+													"key": "{{userFilterName}}",
+													"value": "{{userFilterValue}}"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:53:29 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "282"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"email\": \"elia@example.com\",\n            \"id\": 3,\n            \"name\": \"Elia Rodríguez\",\n            \"role\": \"wanner\",\n            \"updated\": \"Sun, 24 Mar 2024 18:13:28 GMT\",\n            \"verified\": 1\n        }\n    ],\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Read user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.a(\"object\");",
+											"    // Data",
+											"    pm.expect(jsonResponse.data).to.have.property(\"id\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"name\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"email\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"role\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"created\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"updated\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"verified\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/users/{{id_wanner_seller}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"users",
+										"{{id_wanner_seller}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Read user",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/users/{{sellerUserID}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"users",
+												"{{sellerUserID}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:55:20 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "251"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n        \"email\": \"joan@example.com\",\n        \"id\": 1,\n        \"name\": \"Joan Pérez\",\n        \"role\": \"admin\",\n        \"updated\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n        \"verified\": 1\n    },\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Read user NOT FOUND",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status 404\", function () {",
+											"    pm.response.to.be.notFound;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"    pm.response.to.have.jsonBody(\"message\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"JSON response: message\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.message).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.message).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/users/999999999999999",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"users",
+										"999999999999999"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Read user NOT FOUND",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/users/999999999999999",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"users",
+												"999999999999999"
+											]
+										}
+									},
+									"status": "NOT FOUND",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:54:38 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "81"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Not Found\",\n    \"message\": \"Product not found\",\n    \"success\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "List user products",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const dataSchema = {",
+											"    \"type\": \"array\",",
+											"    \"items\": [{",
+											"        \"type\": \"object\",",
+											"        \"properties\":{",
+											"            \"id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"title\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"description\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"photo\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"category_id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"category\": {",
+											"                \"type\":\"object\"",
+											"            },",
+											"            \"seller_id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"seller\": {",
+											"                \"type\":\"object\"",
+											"            },",
+											"            \"status_id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"status\": {",
+											"                \"type\":\"object\"",
+											"            },                       ",
+											"            \"created\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"updated\": {",
+											"                \"type\":\"string\"",
+											"            }",
+											"        },",
+											"        \"required\": [",
+											"            \"id\",",
+											"            \"title\",",
+											"            \"description\",",
+											"            \"price\"",
+											"        ]",
+											"    }]",
+											"};",
+											"",
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"array\");",
+											"    pm.expect(tv4.validate(jsonResponse.data, dataSchema)).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/users/{{id_wanner_seller}}/products",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"users",
+										"{{id_wanner_seller}}",
+										"products"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "List user products",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/users/{{sellerUserID}}/products",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"users",
+												"{{sellerUserID}}",
+												"products"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 19:22:38 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "710"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"category_id\": 1,\n            \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"description\": \"asperiores\",\n            \"id\": 1,\n            \"photo\": \"no_image.png\",\n            \"price\": \"599.99\",\n            \"seller_id\": 3,\n            \"status_id\": 1,\n            \"title\": \"Telèfon mòbil\",\n            \"updated\": \"Sun, 24 Mar 2024 19:17:05 GMT\"\n        },\n        {\n            \"category_id\": 2,\n            \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"description\": \"Una samarreta de cotó de color blau.\",\n            \"id\": 2,\n            \"photo\": \"no_image.png\",\n            \"price\": \"19.99\",\n            \"seller_id\": 3,\n            \"status_id\": 1,\n            \"title\": \"Samarreta\",\n            \"updated\": \"Tue, 30 Jan 2024 18:58:15 GMT\"\n        }\n    ],\n    \"success\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Create order UNAUTHORIZED",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status UNAUTHORIZED\", function () {",
+											"    pm.response.to.be.unauthorized;",
+											"    pm.response.to.have.status(401)",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"product_id\": {{productID}},\n    \"offer\": {{randomPrice}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create order UNAUTHORIZED",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"product_id\": {{productID}},\n    \"offer\": {{randomPrice}}\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"orders"
+											]
+										}
+									},
+									"status": "UNAUTHORIZED",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Mar 2024 07:49:08 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "50"
+										},
+										{
+											"key": "WWW-Authenticate",
+											"value": "Bearer realm=\"Authentication Required\""
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Unauthorized\",\n    \"success\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Create token (buyer)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.success;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"object\");",
+											"    pm.expect(jsonResponse.data).to.have.all.keys(\"token\");",
+											"    // Store last token to test other web services",
+											"    pm.collectionVariables.set(\"token\", jsonResponse.data.token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{email_wanner_buyer}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/tokens",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"tokens"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.success;",
+											"    pm.response.to.have.status(201)",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.a(\"object\");",
+											"    // Data",
+											"    pm.expect(jsonResponse.data).to.have.property(\"id\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"offer\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"created\");",
+											"    // Relationships",
+											"    pm.expect(jsonResponse.data).to.have.any.key(\"product\",\"product_id\");",
+											"    pm.expect(jsonResponse.data).to.have.any.key(\"buyer\",\"buyer_id\");",
+											"    // Store last created resource id to test read, update and delete",
+											"    pm.collectionVariables.set(\"orderID\", jsonResponse.data.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"product_id\": {{productID}},\n    \"offer\": {{$randomInt}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create order",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"product_id\": {{productID}},\n    \"offer\": {{$randomInt}}\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"orders"
+											]
+										}
+									},
+									"status": "CREATED",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Mar 2024 07:31:26 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "162"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"buyer_id\": 4,\n        \"created\": \"Mon, 25 Mar 2024 07:31:26 GMT\",\n        \"id\": 1,\n        \"offer\": \"720.00\",\n        \"product_id\": 1\n    },\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Create order to interact",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.success;",
+											"    pm.response.to.have.status(201)",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.a(\"object\");",
+											"    // Data",
+											"    pm.expect(jsonResponse.data).to.have.property(\"id\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"offer\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"created\");",
+											"    // Relationships",
+											"    pm.expect(jsonResponse.data).to.have.any.key(\"product\",\"product_id\");",
+											"    pm.expect(jsonResponse.data).to.have.any.key(\"buyer\",\"buyer_id\");",
+											"    // Store last created resource id to test read, update and delete",
+											"    pm.collectionVariables.set(\"orderIDtoInteract\", jsonResponse.data.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"product_id\": {{productIDtoDecline}},\n    \"offer\": {{$randomInt}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create order",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"product_id\": {{productID}},\n    \"offer\": {{$randomInt}}\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"orders"
+											]
+										}
+									},
+									"status": "CREATED",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Mar 2024 07:31:26 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "162"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"buyer_id\": 4,\n        \"created\": \"Mon, 25 Mar 2024 07:31:26 GMT\",\n        \"id\": 1,\n        \"offer\": \"720.00\",\n        \"product_id\": 1\n    },\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Update order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.a(\"object\");",
+											"    // Data",
+											"    pm.expect(jsonResponse.data).to.have.property(\"id\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"offer\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"created\");",
+											"    // Relationships",
+											"    pm.expect(jsonResponse.data).to.have.any.key(\"product\",\"product_id\");",
+											"    pm.expect(jsonResponse.data).to.have.any.key(\"buyer\",\"buyer_id\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"JSON response: data updated\", function () {",
+											"    var jsonRequestData = JSON.parse(pm.request.body);",
+											"    var jsonResponseData = pm.response.json().data;",
+											"    pm.expect(jsonResponseData.price).equal(jsonRequestData.price)     ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"offer\": {{$randomInt}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders",
+										"{{orderID}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Update order",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"offer\": {{$randomInt}}\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"orders",
+												"{{orderID}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Mar 2024 07:48:32 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "162"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"buyer_id\": 4,\n        \"created\": \"Mon, 25 Mar 2024 07:47:27 GMT\",\n        \"id\": 8,\n        \"offer\": \"386.00\",\n        \"product_id\": 1\n    },\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Update order BAD REQUEST",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status 400\", function () {",
+											"    pm.response.to.be.badRequest;",
+											"    pm.response.to.have.status(400)",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"    pm.response.to.have.jsonBody(\"message\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"JSON response: message\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.message).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.message).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders",
+										"{{orderID}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Update order BAD REQUEST",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"orders",
+												"{{orderID}}"
+											]
+										}
+									},
+									"status": "BAD REQUEST",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Mar 2024 07:48:40 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "91"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Required field(s) missing\",\n    \"success\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Create token (seller)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.success;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"object\");",
+											"    pm.expect(jsonResponse.data).to.have.all.keys(\"token\");",
+											"    // Store last token to test other web services",
+											"    pm.collectionVariables.set(\"token\", jsonResponse.data.token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{email_wanner_seller}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/tokens",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"tokens"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update order FORBIDDEN user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status FORBIDDEN\", function () {",
+											"    pm.response.to.be.forbidden;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"    pm.response.to.have.jsonBody(\"message\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"JSON response: message\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.message).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.message).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"offer\": {{$randomInt}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders",
+										"{{orderID}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Update order FORBIDDEN user",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"offer\": {{$randomInt}}\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"orders",
+												"{{orderID}}"
+											]
+										}
+									},
+									"status": "FORBIDDEN",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Mar 2024 07:52:30 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "99"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Forbidden\",\n    \"message\": \"You are not the owner of this order\",\n    \"success\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete order FORBIDDEN user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status FORBIDDEN\", function () {",
+											"    pm.response.to.be.forbidden;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"    pm.response.to.have.jsonBody(\"message\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"JSON response: message\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.message).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.message).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders",
+										"{{orderID}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Delete order FORBIDDEN user",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"orders",
+												"{{orderID}}"
+											]
+										}
+									},
+									"status": "FORBIDDEN",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Mar 2024 08:08:50 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "99"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Forbidden\",\n    \"message\": \"You are not the owner of this order\",\n    \"success\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Create token (buyer) AGAIN",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.success;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"object\");",
+											"    pm.expect(jsonResponse.data).to.have.all.keys(\"token\");",
+											"    // Store last token to test other web services",
+											"    pm.collectionVariables.set(\"token\", jsonResponse.data.token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{email_wanner_buyer}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/tokens",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"tokens"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"object\");",
+											"    pm.expect(jsonResponse.data).to.have.any.keys(\"id\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders",
+										"{{orderID}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Delete order",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"orders",
+												"{{orderID}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Mar 2024 08:09:44 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "162"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"buyer_id\": 4,\n        \"created\": \"Mon, 25 Mar 2024 07:47:27 GMT\",\n        \"id\": 8,\n        \"offer\": \"386.00\",\n        \"product_id\": 1\n    },\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete order NOT FOUND",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status 404\", function () {",
+											"    pm.response.to.be.notFound;",
+											"    pm.response.to.have.status(404)",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"    pm.response.to.have.jsonBody(\"message\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"JSON response: message\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.message).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.message).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders",
+										"{{orderID}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Delete order NOT FOUND",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"orders",
+												"{{orderID}}"
+											]
+										}
+									},
+									"status": "NOT FOUND",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Mar 2024 08:10:10 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "79"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Not Found\",\n    \"message\": \"Order not found\",\n    \"success\": false\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Revoke token 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status NO CONTENT\", function () {",
+									"    pm.response.to.have.status(204)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/tokens",
+							"host": [
+								"{{URL_ENDPOINT}}"
+							],
+							"path": [
+								"api",
+								"{{API_VERSION}}",
+								"tokens"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Revoke token",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/tokens",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"tokens"
+									]
+								}
+							},
+							"status": "NO CONTENT",
+							"code": 204,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/2.3.7 Python/3.8.10"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Jan 2024 09:25:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Membre 1",
+			"item": [
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "List categories",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const dataSchema = {",
+											"    \"type\": \"array\",",
+											"    \"items\": [{",
+											"        \"type\": \"object\",",
+											"        \"properties\":{",
+											"            \"id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"name\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"slug\": {",
+											"                \"type\":\"string\"",
+											"            }",
+											"        },",
+											"        \"required\": [",
+											"            \"id\",",
+											"            \"name\"",
+											"        ]",
+											"    }]",
+											"};",
+											"",
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"array\");",
+											"    pm.expect(tv4.validate(jsonResponse.data, dataSchema)).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/categories",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"categories"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "List categories",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/categories",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"categories"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:49:57 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "278"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Electrònica\",\n            \"slug\": \"electronica\"\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Roba\",\n            \"slug\": \"roba\"\n        },\n        {\n            \"id\": 3,\n            \"name\": \"Joguines\",\n            \"slug\": \"joguines\"\n        }\n    ],\n    \"success\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Products",
+					"item": [
+						{
+							"name": "List products",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const dataSchema = {",
+											"    \"type\": \"array\",",
+											"    \"items\": [{",
+											"        \"type\": \"object\",",
+											"        \"properties\":{",
+											"            \"id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"title\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"description\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"photo\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"category_id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"category\": {",
+											"                \"type\":\"object\"",
+											"            },",
+											"            \"seller_id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"seller\": {",
+											"                \"type\":\"object\"",
+											"            },",
+											"            \"status_id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"status\": {",
+											"                \"type\":\"object\"",
+											"            },                       ",
+											"            \"created\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"updated\": {",
+											"                \"type\":\"string\"",
+											"            }",
+											"        },",
+											"        \"required\": [",
+											"            \"id\",",
+											"            \"title\",",
+											"            \"description\",",
+											"            \"price\"",
+											"        ]",
+											"    }]",
+											"};",
+											"",
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"array\");",
+											"    pm.expect(tv4.validate(jsonResponse.data, dataSchema)).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"products"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "List products",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"products"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:50:04 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1344"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"category\": {\n                \"id\": 1,\n                \"name\": \"Electrònica\",\n                \"slug\": \"electronica\"\n            },\n            \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"description\": \"Necessitatibus modi dicta unde quisquam cumque accusantium doloribus quisquam.\",\n            \"id\": 1,\n            \"photo\": \"no_image.png\",\n            \"price\": \"599.99\",\n            \"seller_id\": 3,\n            \"status_id\": 1,\n            \"title\": \"Telèfon mòbil\",\n            \"updated\": \"Sun, 24 Mar 2024 18:24:39 GMT\"\n        },\n        {\n            \"category\": {\n                \"id\": 2,\n                \"name\": \"Roba\",\n                \"slug\": \"roba\"\n            },\n            \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"description\": \"Una samarreta de cotó de color blau.\",\n            \"id\": 2,\n            \"photo\": \"no_image.png\",\n            \"price\": \"19.99\",\n            \"seller_id\": 3,\n            \"status_id\": 1,\n            \"title\": \"Samarreta\",\n            \"updated\": \"Tue, 30 Jan 2024 18:58:15 GMT\"\n        },\n        {\n            \"category\": {\n                \"id\": 3,\n                \"name\": \"Joguines\",\n                \"slug\": \"joguines\"\n            },\n            \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"description\": \"Un ninot de peluix suau.\",\n            \"id\": 3,\n            \"photo\": \"no_image.png\",\n            \"price\": \"9.99\",\n            \"seller_id\": 4,\n            \"status_id\": 1,\n            \"title\": \"Ninot de peluix\",\n            \"updated\": \"Tue, 30 Jan 2024 18:58:15 GMT\"\n        }\n    ],\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "List products with query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const dataSchema = {",
+											"    \"type\": \"array\",",
+											"    \"items\": [{",
+											"        \"type\": \"object\",",
+											"        \"properties\":{",
+											"            \"id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"title\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"description\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"photo\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"category_id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"category\": {",
+											"                \"type\":\"object\"",
+											"            },",
+											"            \"seller_id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"seller\": {",
+											"                \"type\":\"object\"",
+											"            },",
+											"            \"status_id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"status\": {",
+											"                \"type\":\"object\"",
+											"            },                       ",
+											"            \"created\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"updated\": {",
+											"                \"type\":\"string\"",
+											"            }",
+											"        },",
+											"        \"required\": [",
+											"            \"id\",",
+											"            \"title\",",
+											"            \"description\",",
+											"            \"price\"",
+											"        ]",
+											"    }]",
+											"};",
+											"",
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"array\");",
+											"    pm.expect(tv4.validate(jsonResponse.data, dataSchema)).to.be.true;",
+											"    // Filter",
+											"    const expectedCount = parseInt(pm.collectionVariables.get(\"productFilterCount\"));",
+											"    pm.expect(jsonResponse.data.length).to.eql(expectedCount);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products?{{productFilterName}}={{productFilterValue}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"products"
+									],
+									"query": [
+										{
+											"key": "{{productFilterName}}",
+											"value": "{{productFilterValue}}"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "List products with query",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products?{{productFilterName}}={{productFilterValue}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"products"
+											],
+											"query": [
+												{
+													"key": "{{productFilterName}}",
+													"value": "{{productFilterValue}}"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:50:10 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "451"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"category\": {\n                \"id\": 2,\n                \"name\": \"Roba\",\n                \"slug\": \"roba\"\n            },\n            \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n            \"description\": \"Una samarreta de cotó de color blau.\",\n            \"id\": 2,\n            \"photo\": \"no_image.png\",\n            \"price\": \"19.99\",\n            \"seller_id\": 3,\n            \"status_id\": 1,\n            \"title\": \"Samarreta\",\n            \"updated\": \"Tue, 30 Jan 2024 18:58:15 GMT\"\n        }\n    ],\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Read product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.a(\"object\");",
+											"    // Data",
+											"    pm.expect(jsonResponse.data).to.have.property(\"id\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"title\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"description\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"photo\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"created\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"updated\");",
+											"    // Relationships",
+											"    pm.expect(jsonResponse.data).to.have.any.key(\"category\",\"category_id\");",
+											"    pm.expect(jsonResponse.data).to.have.any.key(\"seller\",\"seller_id\");",
+											"    pm.expect(jsonResponse.data).to.have.any.key(\"status\",\"status_id\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/{{productID}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"products",
+										"{{productID}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Read product",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/{{productID}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"products",
+												"{{productID}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:50:15 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "541"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"category\": {\n            \"id\": 1,\n            \"name\": \"Electrònica\",\n            \"slug\": \"electronica\"\n        },\n        \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n        \"description\": \"Necessitatibus modi dicta unde quisquam cumque accusantium doloribus quisquam.\",\n        \"id\": 1,\n        \"photo\": \"no_image.png\",\n        \"price\": \"599.99\",\n        \"seller_id\": 3,\n        \"status\": {\n            \"id\": 1,\n            \"name\": \"Nou\",\n            \"slug\": \"nou\"\n        },\n        \"title\": \"Telèfon mòbil\",\n        \"updated\": \"Sun, 24 Mar 2024 18:24:39 GMT\"\n    },\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Read product NOT FOUND",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status 404\", function () {",
+											"    pm.response.to.be.notFound;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"    pm.response.to.have.jsonBody(\"message\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"JSON response: message\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.message).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.message).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/999999999999999",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"products",
+										"999999999999999"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Read product NOT FOUND",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/999999999999999",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"products",
+												"999999999999999"
+											]
+										}
+									},
+									"status": "NOT FOUND",
+									"code": 404,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:50:20 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "81"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Not Found\",\n    \"message\": \"Product not found\",\n    \"success\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Update product UNAUTHORIZED anonymous",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status UNAUTHORIZED\", function () {",
+											"    pm.response.to.be.unauthorized;",
+											"    pm.response.to.have.status(401)",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nom\": \"{{$randomProduct}}\",\n    \"unitats\": {{$randomInt}},\n    \"store_id\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/{{productID}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"products",
+										"{{productID}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Update product UNAUTHORIZED",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"nom\": \"{{$randomProduct}}\",\n    \"unitats\": {{$randomInt}},\n    \"store_id\": 1\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/{{productID}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"products",
+												"{{productID}}"
+											]
+										}
+									},
+									"status": "UNAUTHORIZED",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:50:24 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "50"
+										},
+										{
+											"key": "WWW-Authenticate",
+											"value": "Bearer realm=\"Authentication Required\""
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Unauthorized\",\n    \"success\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Create token UNAUTHORIZED",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status UNAUTHORIZED\", function () {",
+											"    pm.response.to.be.unauthorized;",
+											"    pm.response.to.have.status(401)",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/tokens",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"tokens"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create token UNAUTHORIZED",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/tokens",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"tokens"
+											]
+										}
+									},
+									"status": "UNAUTHORIZED",
+									"code": 401,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:50:38 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "50"
+										},
+										{
+											"key": "WWW-Authenticate",
+											"value": "Basic realm=\"Authentication Required\""
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Unauthorized\",\n    \"success\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Create token (buyer)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.success;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"object\");",
+											"    pm.expect(jsonResponse.data).to.have.all.keys(\"token\");",
+											"    // Store last token to test other web services",
+											"    pm.collectionVariables.set(\"token\", jsonResponse.data.token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{email_wanner_buyer}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/tokens",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"tokens"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update product FORBIDDEN user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status FORBIDDEN\", function () {",
+											"    pm.response.to.be.forbidden;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": \"{{$randomLoremText}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/{{productID}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"products",
+										"{{productID}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Update product FORBIDDEN user",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"description\": \"{{$randomLoremText}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/{{productID}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"products",
+												"{{productID}}"
+											]
+										}
+									},
+									"status": "FORBIDDEN",
+									"code": 403,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Mar 2024 07:56:13 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "101"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Forbidden\",\n    \"message\": \"You are not the owner of this product\",\n    \"success\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "Create token (seller)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.success;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"object\");",
+											"    pm.expect(jsonResponse.data).to.have.all.keys(\"token\");",
+											"    // Store last token to test other web services",
+											"    pm.collectionVariables.set(\"token\", jsonResponse.data.token);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{email_wanner_seller}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/tokens",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"tokens"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.a(\"object\");",
+											"    // Data",
+											"    pm.expect(jsonResponse.data).to.have.property(\"id\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"title\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"description\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"photo\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"created\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"updated\");",
+											"    // Relationships",
+											"    pm.expect(jsonResponse.data).to.have.any.key(\"category\",\"category_id\");",
+											"    pm.expect(jsonResponse.data).to.have.any.key(\"seller\",\"seller_id\");",
+											"    pm.expect(jsonResponse.data).to.have.any.key(\"status\",\"status_id\");",
+											"});",
+											"",
+											"",
+											"pm.test(\"JSON response: data updated\", function () {",
+											"    var jsonRequestData = JSON.parse(pm.request.body);",
+											"    var jsonResponseData = pm.response.json().data;",
+											"    pm.expect(jsonResponseData.description).equal(jsonRequestData.description)     ",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"description\": \"{{$randomLoremText}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/{{productID}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"products",
+										"{{productID}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Update product",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"description\": \"{{$randomLoremText}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/{{productID}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"products",
+												"{{productID}}"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:50:50 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "352"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"category_id\": 1,\n        \"created\": \"Tue, 30 Jan 2024 18:58:15 GMT\",\n        \"description\": \"Tenetur eius animi possimus.\",\n        \"id\": 1,\n        \"photo\": \"no_image.png\",\n        \"price\": \"599.99\",\n        \"seller_id\": 3,\n        \"status_id\": 1,\n        \"title\": \"Telèfon mòbil\",\n        \"updated\": \"Sun, 24 Mar 2024 18:50:49 GMT\"\n    },\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Update product BAD REQUEST",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status 400\", function () {",
+											"    pm.response.to.be.badRequest;",
+											"    pm.response.to.have.status(400)",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"    pm.response.to.have.jsonBody(\"message\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"JSON response: message\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.message).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.message).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/{{productID}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"products",
+										"{{productID}}"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Update product BAD REQUEST",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/{{productID}}",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"products",
+												"{{productID}}"
+											]
+										}
+									},
+									"status": "BAD REQUEST",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 24 Mar 2024 18:50:54 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "91"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"error\": \"Bad Request\",\n    \"message\": \"Required field(s) missing\",\n    \"success\": false\n}"
+								}
+							]
+						},
+						{
+							"name": "List product orders",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const dataSchema = {",
+											"    \"type\": \"array\",",
+											"    \"items\": [{",
+											"        \"type\": \"object\",",
+											"        \"properties\":{",
+											"            \"id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"offer\": {",
+											"                \"type\":\"string\"",
+											"            },",
+											"            \"buyer_id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"buyer\": {",
+											"                \"type\":\"object\"",
+											"            },",
+											"            \"product_id\": {",
+											"                \"type\":\"integer\"",
+											"            },",
+											"            \"product\": {",
+											"                \"type\":\"object\"",
+											"            },                      ",
+											"            \"created\": {",
+											"                \"type\":\"string\"",
+											"            }",
+											"        },",
+											"        \"required\": [",
+											"            \"id\",",
+											"            \"offer\"",
+											"        ]",
+											"    }]",
+											"};",
+											"",
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"array\");",
+											"    pm.expect(tv4.validate(jsonResponse.data, dataSchema)).to.be.true;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/{{productID}}/orders",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"products",
+										"{{productID}}",
+										"orders"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "List product orders",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/products/{{productID}}/orders",
+											"host": [
+												"{{URL_ENDPOINT}}"
+											],
+											"path": [
+												"api",
+												"{{API_VERSION}}",
+												"products",
+												"{{productID}}",
+												"orders"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "Werkzeug/3.0.1 Python/3.8.10"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 25 Mar 2024 07:57:23 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "184"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"buyer_id\": 4,\n            \"created\": \"Mon, 25 Mar 2024 07:47:27 GMT\",\n            \"id\": 8,\n            \"offer\": \"386.00\",\n            \"product_id\": 1\n        }\n    ],\n    \"success\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Orders",
+					"item": [
+						{
+							"name": "Accept order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.success;",
+											"    pm.response.to.have.status(201)",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.a(\"object\");",
+											"    // Data",
+											"    pm.expect(jsonResponse.data).to.have.property(\"order_id\");",
+											"    pm.expect(jsonResponse.data).to.have.property(\"created\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderIDtoInteract}}/confirmed",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders",
+										"{{orderIDtoInteract}}",
+										"confirmed"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Accept order BAD REQUEST",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status 400\", function () {",
+											"    pm.response.to.be.badRequest;",
+											"    pm.response.to.have.status(400)",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"    pm.response.to.have.jsonBody(\"message\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"JSON response: message\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.message).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.message).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderIDtoInteract}}/confirmed",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders",
+										"{{orderIDtoInteract}}",
+										"confirmed"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Decline order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status OK\", function () {",
+											"    pm.response.to.be.ok;",
+											"    pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"data\");",
+											"    pm.response.to.not.have.jsonBody(\"error\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"JSON response: data\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.data).to.be.an(\"object\");",
+											"    pm.expect(jsonResponse.data).to.have.any.keys(\"order_id\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderIDtoInteract}}/confirmed",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders",
+										"{{orderIDtoInteract}}",
+										"confirmed"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Decline order NOT FOUND",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status 404\", function () {",
+											"    pm.response.to.be.notFound;",
+											"    pm.response.to.have.status(404)",
+											"})",
+											"",
+											"pm.test(\"JSON response\", function () {",
+											"    pm.response.to.be.json;",
+											"    pm.response.to.be.an(\"object\");",
+											"    pm.response.to.have.jsonBody(\"success\");",
+											"    pm.response.to.have.jsonBody(\"error\");",
+											"    pm.response.to.have.jsonBody(\"message\");",
+											"    pm.response.to.not.have.jsonBody(\"data\");",
+											"});",
+											"",
+											"pm.test(\"JSON response: success\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+											"    pm.expect(jsonResponse.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"JSON response: error\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.error).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.error).to.not.be.empty;",
+											"});",
+											"",
+											"pm.test(\"JSON response: message\", function () {",
+											"    var jsonResponse = pm.response.json();",
+											"    pm.expect(jsonResponse.message).to.be.an(\"string\");",
+											"    pm.expect(jsonResponse.message).to.not.be.empty;",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/999999999999999/confirmed",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders",
+										"999999999999999",
+										"confirmed"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Revoke token 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status NO CONTENT\", function () {",
+									"    pm.response.to.have.status(204)",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/tokens",
+							"host": [
+								"{{URL_ENDPOINT}}"
+							],
+							"path": [
+								"api",
+								"{{API_VERSION}}",
+								"tokens"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Membre 2 cleaning",
+			"item": [
+				{
+					"name": "Create token (buyer)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status OK\", function () {",
+									"    pm.response.to.be.success;",
+									"})",
+									"",
+									"pm.test(\"JSON response\", function () {",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.an(\"object\");",
+									"    pm.response.to.have.jsonBody(\"success\");",
+									"    pm.response.to.have.jsonBody(\"data\");",
+									"    pm.response.to.not.have.jsonBody(\"error\");",
+									"});",
+									"",
+									"pm.test(\"JSON response: success\", function () {",
+									"    var jsonResponse = pm.response.json();",
+									"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+									"    pm.expect(jsonResponse.success).to.eql(true);",
+									"});",
+									"",
+									"pm.test(\"JSON response: data\", function () {",
+									"    var jsonResponse = pm.response.json();",
+									"    pm.expect(jsonResponse.data).to.be.an(\"object\");",
+									"    pm.expect(jsonResponse.data).to.have.all.keys(\"token\");",
+									"    // Store last token to test other web services",
+									"    pm.collectionVariables.set(\"token\", jsonResponse.data.token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{email_wanner_buyer}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/tokens",
+							"host": [
+								"{{URL_ENDPOINT}}"
+							],
+							"path": [
+								"api",
+								"{{API_VERSION}}",
+								"tokens"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete order to interact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status OK\", function () {",
+									"    pm.response.to.be.ok;",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+									"})",
+									"",
+									"pm.test(\"JSON response\", function () {",
+									"    pm.response.to.be.json;",
+									"    pm.response.to.be.an(\"object\");",
+									"    pm.response.to.have.jsonBody(\"success\");",
+									"    pm.response.to.have.jsonBody(\"data\");",
+									"    pm.response.to.not.have.jsonBody(\"error\");",
+									"});",
+									"",
+									"pm.test(\"JSON response: success\", function () {",
+									"    var jsonResponse = pm.response.json();",
+									"    pm.expect(jsonResponse.success).to.be.a(\"boolean\");",
+									"    pm.expect(jsonResponse.success).to.eql(true);",
+									"});",
+									"",
+									"pm.test(\"JSON response: data\", function () {",
+									"    var jsonResponse = pm.response.json();",
+									"    pm.expect(jsonResponse.data).to.be.an(\"object\");",
+									"    pm.expect(jsonResponse.data).to.have.any.keys(\"id\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderIDtoInteract}}",
+							"host": [
+								"{{URL_ENDPOINT}}"
+							],
+							"path": [
+								"api",
+								"{{API_VERSION}}",
+								"orders",
+								"{{orderIDtoInteract}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete order",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL_ENDPOINT}}/api/{{API_VERSION}}/orders/{{orderID}}",
+									"host": [
+										"{{URL_ENDPOINT}}"
+									],
+									"path": [
+										"api",
+										"{{API_VERSION}}",
+										"orders",
+										"{{orderID}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "Werkzeug/3.0.1 Python/3.8.10"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 25 Mar 2024 08:09:44 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "162"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"buyer_id\": 4,\n        \"created\": \"Mon, 25 Mar 2024 07:47:27 GMT\",\n        \"id\": 8,\n        \"offer\": \"386.00\",\n        \"product_id\": 1\n    },\n    \"success\": true\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "productFilterName",
+			"value": "title"
+		},
+		{
+			"key": "productFilterValue",
+			"value": "Samarreta",
+			"type": "string"
+		},
+		{
+			"key": "productFilterCount",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "userFilterName",
+			"value": "name",
+			"type": "string"
+		},
+		{
+			"key": "userFilterValue",
+			"value": "elia",
+			"type": "string"
+		},
+		{
+			"key": "userFilterCount",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "productID",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "productIDtoDecline",
+			"value": "2",
+			"type": "string"
+		},
+		{
+			"key": "orderID",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "orderIDtoInteract",
+			"value": "2",
+			"type": "string"
+		}
+	]
+}

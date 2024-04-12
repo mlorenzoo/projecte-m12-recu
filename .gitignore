@@ -1,0 +1,7 @@
+.venv
+.env
+.env.docker
+.vscode
+__pycache__
+*.db-journal
+*.db

@@ -1,0 +1,20 @@
+body {
+    background-color: lightgoldenrodyellow;
+}
+
+.messages .error {
+    color: red;
+}
+
+.messages .success {
+    color: green;
+}
+
+tr.own {
+    font-weight: bolder;
+}
+
+.blocked,
+.banned {
+    background-color: lightpink;
+}
